@@ -25,11 +25,15 @@ wheels/
 *.egg
 
 # Virtual environments
-.env
-.venv
+.venv/
 env/
 venv/
 ENV/
+
+# Local environment files (.env.example stays versioned)
+.env
+.env.*
+!.env.example
 
 # Testing & linting
 .pytest_cache/
