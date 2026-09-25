@@ -23,7 +23,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 uvicorn app.main:app --reload --port 8000
 ```
 
-O provider padrão é `mock`. Para usar outro provider, configure `DEFAULT_PROVIDER` e a respectiva chave de API no ambiente. Os endpoints de capacidade exigem o segredo de serviço e o contexto do tenant; `/health` e `/docs` ficam disponíveis em `http://localhost:8000`.
+O provider padrão é `mock`, adequado para desenvolvimento local sem custo externo. `DEFAULT_PROVIDER=gemini` exige `GEMINI_API_KEY`; atualmente apenas `/chat` chama o modelo Gemini e as demais capacidades ainda delegam ao provider mock. O gateway Spring Boot chama este serviço com o segredo de serviço e o contexto do tenant. Em GCP, a chamada também usa identidade IAM do Cloud Run. Os endpoints de capacidade exigem autenticação e contexto do tenant; `/health` e `/docs` ficam disponíveis em `http://localhost:8000`.
 
 ## Referências
 
