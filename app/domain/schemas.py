@@ -4,6 +4,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, Field
 
+
 class UsageMetadata(BaseModel):
     model_used: str
     prompt_tokens: int = 0
