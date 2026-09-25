@@ -1,5 +1,7 @@
 # GoMech AI Service
 
+[![CI](https://github.com/DeyvidJesus/gomech-ai-service-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/DeyvidJesus/gomech-ai-service-v2/actions/workflows/ci.yml)
+
 Serviço de IA independente em Python e FastAPI. Expõe capacidades automotivas estruturadas por HTTP, aplica autenticação serviço a serviço, guardrails de entrada e uma interface intercambiável para providers. O processo não acessa o banco de dados da plataforma.
 
 ## Estrutura
