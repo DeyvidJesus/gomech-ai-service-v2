@@ -7,7 +7,7 @@ from app.main import app
 
 client = TestClient(app)
 AUTH_HEADERS = {
-    "X-GoMech-Service-Auth": "gm-ai-internal-hmac-secret",
+    "X-GoMech-Service-Auth": "gm-ai-local-dev-secret",
     "X-Tenant-Id": str(uuid4()),
 }
 

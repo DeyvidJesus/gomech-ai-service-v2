@@ -17,6 +17,9 @@ jobs:
   checks:
     name: Lint, test and boot check
     runs-on: ubuntu-latest
+    env:
+      # Accepts the public development secret; any other environment requires a real one.
+      ENVIRONMENT: test
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

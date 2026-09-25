@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 client = TestClient(app)
-VALID_AUTH_SECRET = "gm-ai-internal-hmac-secret"
+VALID_AUTH_SECRET = "gm-ai-local-dev-secret"
 
 
 def test_missing_auth_header_rejected():

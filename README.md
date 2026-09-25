@@ -20,13 +20,22 @@ Para executar este serviço isoladamente:
 python -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt -r requirements-dev.txt
+cp .env.example .env
 uvicorn app.main:app --reload --port 8000
+```
+
+O `.env.example` define `ENVIRONMENT=local`. Sem essa variável, o serviço se considera implantado e não sobe com o segredo de serviço padrão, que é público: fora de `local`, `development`, `dev` e `test`, `SERVICE_AUTH_SECRET` precisa ser um valor próprio com pelo menos 32 caracteres.
+
+Verificações (as mesmas da CI):
+
+```bash
+ruff check app tests
+pytest
 ```
 
 O provider padrão é `mock`, adequado para desenvolvimento local sem custo externo. `DEFAULT_PROVIDER=gemini` exige `GEMINI_API_KEY`; atualmente apenas `/chat` chama o modelo Gemini e as demais capacidades ainda delegam ao provider mock. O gateway Spring Boot chama este serviço com o segredo de serviço e o contexto do tenant. Em GCP, a chamada também usa identidade IAM do Cloud Run. Os endpoints de capacidade exigem autenticação e contexto do tenant; `/health` e `/docs` ficam disponíveis em `http://localhost:8000`.
 
 ## Referências
 
-- [Guia de estudo do projeto](https://github.com/DeyvidJesus/gomech/blob/master/docs/guias/guia-de-estudo-entrevista.md)
 - [Especificação do serviço](https://github.com/DeyvidJesus/gomech/blob/master/docs/AI_SERVICE_SPECIFICATION.md)
 - [ADR-019 — Isolamento do serviço de IA](https://github.com/DeyvidJesus/gomech/blob/master/docs/adr/ADR-019-isolamento-do-servico-de-ia.md)
