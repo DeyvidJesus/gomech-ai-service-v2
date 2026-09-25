@@ -41,3 +41,7 @@ O provider padrão é `mock`, adequado para desenvolvimento local sem custo exte
 
 - [Especificação do serviço](https://github.com/DeyvidJesus/gomech/blob/master/docs/AI_SERVICE_SPECIFICATION.md)
 - [ADR-019 — Isolamento do serviço de IA](https://github.com/DeyvidJesus/gomech/blob/master/docs/adr/ADR-019-isolamento-do-servico-de-ia.md)
+
+## Licença
+
+[MIT](LICENSE)
