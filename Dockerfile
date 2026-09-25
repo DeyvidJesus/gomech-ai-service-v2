@@ -6,9 +6,14 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt \
+    && groupadd --system gomech \
+    && useradd --system --gid gomech --no-create-home --shell /usr/sbin/nologin gomech
 
 COPY app ./app
+
+# Run as an unprivileged user; port 8000 does not need root.
+USER gomech
 
 EXPOSE 8000
 
