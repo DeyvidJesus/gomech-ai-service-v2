@@ -1,3 +1,4 @@
+import hmac
 from uuid import UUID
 
 from fastapi import Header, HTTPException, status
@@ -30,7 +31,10 @@ async def verify_service_auth(
     if not provided_secret and authorization and authorization.startswith("Bearer "):
         provided_secret = authorization.split(" ", 1)[1]
 
-    if not provided_secret or provided_secret != settings.SERVICE_AUTH_SECRET:
+    # Constant-time comparison, so response timing does not leak how much of the secret matched.
+    if not provided_secret or not hmac.compare_digest(
+        provided_secret.encode("utf-8"), settings.SERVICE_AUTH_SECRET.encode("utf-8")
+    ):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Unauthorized: Invalid or missing service authentication token.",
